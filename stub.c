@@ -22,7 +22,7 @@ inline void MOCK_test(int t){
 	printf("Test 2.1 %i\n",MATCH(test2,16));
 	printf("Test 2.2 %i\n",MATCH(test2,17));
 	printf("Test 2.3 %i\n",MATCH(test2,10));
-	printf("Test 2.2 %i\n",MATCH(test2,9));	
+	printf("Test 2.4 %i\n",MATCH(test2,9));	
 	
 	range test3 = ANY;
 	printf("Test 3.1 %i\n",MATCH(test3,102));
@@ -32,7 +32,8 @@ inline void MOCK_test(int t){
 	printf("Test 4.1 %i\n",MATCH("Hello","Hello"));
 	printf("Test 4.2 %i\n",MATCH("WORLD","WORLDO"));
 	
-
+	range n = 2;
+	printf("My Test %i\n",UINT_COMP(n));
 	
 	
 	
