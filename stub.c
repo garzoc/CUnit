@@ -13,7 +13,7 @@
 inline void MOCK_test(int t){
 	printf("Mock: %s\n",__func__);
 	
-	range test1 = 100;
+	/*range test1 = 100;
 	printf("Test 1.1 %i\n",MATCH(test1,100));
 	printf("Test 1.2 %i\n",MATCH(test1,50));
 	
@@ -33,7 +33,30 @@ inline void MOCK_test(int t){
 	printf("Test 4.2 %i\n",MATCH("WORLD","WORLDO"));
 	
 	range n = 2;
-	printf("My Test %i\n",UINT_COMP(n));
+	printf("My Test %i\n",UINT_COMP(n));*/
+
+
+	range result;
+	IF_MATCH(100,100){
+		printf("Test 1.1 %i\n");
+	}
+	
+
+	IF_MATCH(RANGE(10,16),14){
+		printf("Test 2.1 %i\n");
+	}
+
+	IF_MATCH(ANY,15){
+		printf("Test 3.1 %i\n");
+	}
+	
+	IF_MATCH("Hello","Hello"){
+		printf("Test 3.1 %i\n");
+	}
+	
+	
+
+	
 	
 	
 	

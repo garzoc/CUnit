@@ -68,29 +68,33 @@
 		
 	
 	
-	/*#define IF_MATCH(x,y,result)\
-		Pragma_SUPRESSION()\
-		if((result = _Generic((x),\
+	
+	
+	#if defined(__GNUC__) || defined(__GNUG__)
+		#define Pragma_SUPRESSION() _Pragma("GCC diagnostic push")								\
+									_Pragma("GCC diagnostic ignored \"-Wpointer-to-int-cast\"")	\
+									_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"")	\
+									_Pragma("GCC diagnostic ignored \"-Wint-conversion\"")	\
+									_Pragma("GCC diagnostic ignored \"-Wnonnull\"")
+
+		#define Pragma_UnSupress() _Pragma("GCC diagnostic pop")
+	#elif defined (__clang__)
+		#define Pragma_SUPRESSION() _Pragma("clang diagnostic push")								\
+									_Pragma("clang diagnostic ignored \"-Wpointer-to-int-cast\"")	\
+									_Pragma("clang diagnostic ignored \"-Wint-to-pointer-cast\"")	\
+									_Pragma("clang diagnostic ignored \"-Wnonnull\"")				\
+		#define Pragma_UnSupress() _Pragma("clang diagnostic pop")
+		
+	#endif
+
+	#define IF_MATCH(x,y)						\
+		Pragma_SUPRESSION()								\
+		if((_Generic((x),						\
 			range : (MATCH_RANGE((range)x,(range)y)),	\
 			char* : MATCH_STR((char*)x,(char*)y),		\
 			default : MATCH_DEF(x,y) )))				\
 			Pragma_UnSupress()
-	*/
 	
-	#if defined(__GNUC__) || defined(__GNUG__)
-		#define Pragma_SUPRESSION() _Pragma("GCC diagnostic push")
-									_Pragma("GCC diagnostic ignored \"-Wpointer-to-int-cast\"")\
-									_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"")
-									_Pragma("GCC diagnostic ignored \"-Wnonnull\"")
-		#define Pragma_UnSupress() _Pragma("GCC diagnostic pop")
-	#elif defined (__clang__)
-		#define Pragma_SUPRESSION() _Pragma("clang diagnostic push")\
-									_Pragma("clang diagnostic ignored \"-Wpointer-to-int-cast\"")\
-									_Pragma("clang diagnostic ignored \"-Wint-to-pointer-cast\"")\
-									_Pragma("clang diagnostic ignored \"-Wnonnull\"")\
-		#define Pragma_UnSupress() _Pragma("clang diagnostic pop")
-		
-	#endif
 	
 	
 	/*//Only properly works in clang, although you're redefine a new variable each time for the results	
