@@ -38,22 +38,21 @@ inline void MOCK_test(int t){
 
 	range result;
 	IF_MATCH(100,100){
-		printf("Test 1.1 %i\n");
+		printf("Test 1.1 \n");
 	}
 	
 
 	IF_MATCH(RANGE(10,16),14){
-		printf("Test 2.1 %i\n");
+		printf("Test 2.1 \n");
 	}
 
 	IF_MATCH(ANY,15){
-		printf("Test 3.1 %i\n");
+		printf("Test 3.1 \n");
 	}
 	
 	IF_MATCH("Hello","Hello"){
-		printf("Test 3.1 %i\n");
+		printf("Test 3.1 \n");
 	}
-	
 	
 
 	

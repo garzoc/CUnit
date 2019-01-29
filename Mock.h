@@ -89,10 +89,10 @@
 
 	#define IF_MATCH(x,y)						\
 		Pragma_SUPRESSION()								\
-		if((_Generic((x),						\
-			range : (MATCH_RANGE((range)x,(range)y)),	\
-			char* : MATCH_STR((char*)x,(char*)y),		\
-			default : MATCH_DEF(x,y) )))				\
+		if(_Generic((x),						\
+			range 	: UINT_COMP(y) || INT_COMP(y) ? (MATCH_RANGE((range)x,(range)y)) : 0,	\
+			char* 	: INT_PTR_COMP(y) ? (MATCH_STR((char*)x,(char*)y)): 0,					\
+			default : (MATCH_DEF(x,y))))													\
 			Pragma_UnSupress()
 	
 	
